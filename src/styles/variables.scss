@@ -1,0 +1,44 @@
+// color
+
+// 主色调
+$primary-color: #ffeb3b !default;
+$primary-color-end: #fff59d !default;
+// 辅助色
+$help-color: #fffde7 !default;
+// 标题常规文字
+$title-color: #1a1a1a !default;
+// 副标题
+$title-color2: #666 !default;
+// 次内容
+$text-color: #808080 !default;
+// 特殊禁用色
+$disable-color: #ccc !default;
+$white: #fff;
+$black: #000;
+
+// padding
+$padding-xs: 12px;
+
+$font-family: pingfang sc, microsoft yahei, helvetica, hiragino sans gb, simsun,
+  sans-serif !default;
+
+// ---- Animation ----
+$animation-duration: 0.25s !default;
+$animation-timing-fun: cubic-bezier(0.55, 0.085, 0.68, 0.53) !default;
+
+// Font
+$font-size-0: 10px;
+$font-size-1: 12px;
+$font-size-2: 14px;
+$font-size-3: 16px;
+$font-size-4: 18px;
+$font-weight-bold: 400;
+
+$font-size-small: $font-size-1;
+$font-size-base: $font-size-2;
+$font-size-large: $font-size-3;
+$line-height-base: 1.5 !default;
+
+view-block {
+  display: block;
+}
