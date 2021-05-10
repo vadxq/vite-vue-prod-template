@@ -15,9 +15,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 .layout {
   font-size: 24px;
-
-  &-s {
-    font-size: 12px;
-  }
 }
 </style>

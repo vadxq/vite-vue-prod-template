@@ -27,11 +27,5 @@ export default defineConfig({
     target: 'es2015',
     outDir: './dist/',
     cssCodeSplit: true
-    // rollupOptions: {
-    //   input: {
-    //     mobile: resolve(__dirname, 'mobile.html')
-    //     // doc: resolve(__dirname, 'index.html')
-    //   }
-    // }
   }
 });
