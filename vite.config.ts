@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
+import eslint from '@rollup/plugin-eslint';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,9 +17,13 @@ export default defineConfig({
     }
   },
   plugins: [
-    vue({
-      include: [/\.vue$/, /\.md$/]
-    }),
+    vue(),
+    {
+      ...eslint({
+        include: 'src/**/*.+(js|jsx|ts|tsx|vue)'
+      }),
+      enforce: 'pre'
+    },
     legacy({
       targets: ['defaults', 'not IE 11']
     })

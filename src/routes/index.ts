@@ -1,10 +1,25 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Index from './layouts/index.vue';
+import Layout from './layouts/index.vue';
+import Home from '@/views/home/index.vue';
+import NotFound from '@/views/4xx/404.vue';
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'layout',
-    component: Index
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: '首页',
+        component: Home
+      }
+    ]
+  },
+  {
+    path: '/404',
+    name: 'notFound',
+    component: NotFound
   }
 ];
 

@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <p>hello world</p>
+  <div class="notFound">
+    <p>404 Not Found!</p>
   </div>
 </template>
 
@@ -8,12 +8,12 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: 'home'
+  name: 'notFound'
 });
 </script>
 
 <style lang="scss" scoped>
-.home {
-  font-size: 28px;
+.notFound {
+  font-size: 24px;
 }
 </style>
