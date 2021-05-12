@@ -54,6 +54,11 @@
     "vite": "^2.2.3",
     "vue-tsc": "^0.0.24"
   },
+  "browserslist": [
+    "last 5 versions",
+    "> 1%",
+    "not IE <= 10"
+  ],
   "eslintConfig": {
     "root": true,
     "env": {
