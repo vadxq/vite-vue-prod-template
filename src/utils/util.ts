@@ -9,6 +9,8 @@ export const getApiUrl = (url: string): string => {
     } else {
       BASE_URL = 'http://test-api.vadxq.com';
     }
+  } else if (process.env.NODE_ENV === 'mock') {
+    BASE_URL = url;
   } else {
     // 生产环境
     if (url.includes('/api/')) {
