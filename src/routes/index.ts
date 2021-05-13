@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import Layout from './layouts/index.vue';
+import Layout from '@/layouts/index.vue';
 import Home from '@/views/home/index.vue';
 import NotFound from '@/views/4xx/404.vue';
 
@@ -50,7 +50,8 @@ router.beforeEach((to, from, next) => {
   console.log('进入路由拦截');
   if (to.path === '/login') {
     next();
-    return;
+  } else {
+    next();
   }
   // 若么有登录跳登录 demo
   // if (!getCookie('token')) {

@@ -3,7 +3,7 @@ module.exports = {
     // 增加浏览器前缀
     autoprefixer: {},
     'postcss-plugin-px2rem': {
-      rootValue: 37.5, // 换算基数， 默认100  ，这样的话把根标签的字体规定为1rem为50px,这样就可以从设计稿上量出多少个px直接在代码中写多上px了。
+      rootValue: 75, // 换算基数， 默认100  ，这样的话把根标签的字体规定为1rem为50px,这样就可以从设计稿上量出多少个px直接在代码中写多上px了。
       // unitPrecision: 5, // 允许REM单位增长到的十进制数字。
       //propWhiteList: [],  // 默认值是一个空数组，这意味着禁用白名单并启用所有属性。
       // propBlackList: [], // 黑名单
