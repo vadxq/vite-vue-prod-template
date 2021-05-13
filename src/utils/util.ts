@@ -38,20 +38,20 @@ export const getApiUrl = (originUrl: string): string => {
   if (process.env.NODE_ENV === 'development') {
     // 开发环境 - 根据请求不同返回不同的BASE_URL
     if (originUrl.includes('/api/')) {
-      url = url.split('/api')[1];
+      url = '/api' + url.split('/api')[1];
     }
-    if (originUrl.includes('/web-api/')) {
-      url = url.split('/web-api')[1];
+    if (originUrl.includes('/other-api/')) {
+      url = '/api' + url.split('/other-api')[1];
     }
   } else if (process.env.NODE_ENV === 'mock') {
     url = originUrl;
   } else {
     // 生产环境
     if (originUrl.includes('/api/')) {
-      url = url.split('/api')[1];
+      url = '/api' + url.split('/api')[1];
     }
-    if (originUrl.includes('/web-api/')) {
-      url = url.split('/web-api')[1];
+    if (originUrl.includes('/other-api/')) {
+      url = '/api' + url.split('/other-api')[1];
     }
   }
   return baseUrl + url;
