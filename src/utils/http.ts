@@ -1,10 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import axios, { AxiosInstance } from 'axios';
-// import { getApiUrl } from './utils';
+import axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
+import { getApiUrl } from '@/utils/util';
 import router from '@/routes/index';
 import { HTTP_STATUS } from './config';
 
 const service: AxiosInstance = axios.create({
+  // baseURL: process.env.VUE_APP_ENV === 'development' ? '/api' : computedBaseUrl(),
   timeout: 600000 // 请求超时时间
 });
 
@@ -35,22 +35,15 @@ service.interceptors.response.use(
  * @description httpRequest，封装网络请求
  */
 class httpRequest {
-  baseOptions(
-    params: {
-      url: string;
-      data: any;
-      contentType: string;
-    },
-    method = 'GET'
-  ) {
+  baseOptions(params: any, method: Method = 'GET') {
     const { url, data } = params;
     let contentType = 'application/json';
     contentType = params.contentType || contentType;
-    const option: any = {
-      url,
+    const option: AxiosRequestConfig = {
+      url: getApiUrl(url),
       data: data,
       method,
-      header: {
+      headers: {
         'content-type': contentType,
         token: 'token'
       }
@@ -59,23 +52,23 @@ class httpRequest {
     return service(option);
   }
 
-  get(url: string, data: any = '') {
-    const option: any = { url, data };
+  get(url: string, data = {}) {
+    const option = { url, data };
     return this.baseOptions(option);
   }
 
-  post(url: string, data: any, contentType?: string) {
-    const params: any = { url, data, contentType };
+  post(url: string, data = {}, contentType?: string) {
+    const params = { url, data, contentType };
     return this.baseOptions(params, 'POST');
   }
 
-  put(url: string, data: any = '') {
-    const option: any = { url, data };
+  put(url: string, data = {}) {
+    const option = { url, data };
     return this.baseOptions(option, 'PUT');
   }
 
-  delete(url: string, data: any = '') {
-    const option: any = { url, data };
+  delete(url: string, data = {}) {
+    const option = { url, data };
     return this.baseOptions(option, 'DELETE');
   }
 }
