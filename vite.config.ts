@@ -4,6 +4,7 @@ import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
 import eslint from '@rollup/plugin-eslint';
 import { viteMockServe } from 'vite-plugin-mock';
+import { viteVConsole } from 'vite-plugin-vconsole';
 
 // https://vitejs.dev/config/
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
@@ -30,6 +31,15 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         //   import { setupProdMockServer } from './mockProdServer';
         //   setupProdMockServer();
         // `
+      }),
+      viteVConsole({
+        entry: resolve(__dirname, './src/main.ts'),
+        localEnabled: true,
+        enabled: true,
+        config: {
+          maxLogNumber: 1000,
+          theme: 'dark'
+        }
       }),
       {
         ...eslint({

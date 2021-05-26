@@ -59,8 +59,10 @@
     "stylelint": "^13.13.0",
     "stylelint-config-standard": "^22.0.0",
     "typescript": "^4.2.0",
+    "vconsole": "^3.6.1",
     "vite": "^2.2.3",
     "vite-plugin-mock": "^2.5.0",
+    "vite-plugin-vconsole": "^1.1.0",
     "vue-tsc": "^0.0.24"
   },
   "browserslist": [
