@@ -66,6 +66,7 @@
     "postcss": "^8.2.15",
     "postcss-plugin-px2rem": "^0.8.1",
     "prettier": "^2.2.1",
+    "qiniu": "^7.4.0",
     "sass": "^1.32.12",
     "stylelint": "^13.13.0",
     "stylelint-config-standard": "^22.0.0",
