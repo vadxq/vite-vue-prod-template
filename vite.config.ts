@@ -3,6 +3,9 @@ import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
 import eslint from '@rollup/plugin-eslint';
+import { projectBasePath } from './build/config';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import * as pkg from './package.json';
 import { viteMockServe } from 'vite-plugin-mock';
 import { viteVConsole } from 'vite-plugin-vconsole';
 
@@ -19,8 +22,19 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         }
       }
     },
+    base:
+      mode === 'prod'
+        ? `https://cdn.vadxq.com/${projectBasePath}`
+        : mode === 'test'
+        ? '/'
+        : mode === 'test1'
+        ? '/'
+        : mode === 'grey'
+        ? '/'
+        : './',
     plugins: [
       vue(),
+      vueJsx(),
       viteMockServe({
         mockPath: 'mocks',
         supportTs: true,
@@ -35,10 +49,12 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       viteVConsole({
         entry: resolve(__dirname, './src/main.ts'),
         localEnabled: true,
-        enabled: true,
+        enabled:
+          command !== 'serve' &&
+          (mode === 'test' || mode === 'test1' || mode === 'alpha'),
         config: {
           maxLogNumber: 1000,
-          theme: 'dark'
+          theme: 'light'
         }
       }),
       {
@@ -51,6 +67,34 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         targets: ['defaults', 'not IE 11']
       })
     ],
+    server: {
+      host: '0.0.0.0',
+      port: 3000,
+      open: true,
+      proxy: {
+        '/api': {
+          target:
+            mode === 'alpha'
+              ? 'http://alpha-api.vadxq.com'
+              : mode === 'test'
+              ? 'http://test-api.vadxq.com'
+              : mode === 'test1'
+              ? 'http://test1-api.vadxq.com'
+              : mode === 'grey'
+              ? 'https://api.vadxq.com'
+              : mode === 'prod'
+              ? 'https://api.vadxq.com'
+              : 'http://0.0.0.0:3000',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/api/, '')
+        },
+        '/ohter-api': {
+          target: 'http://other-api.vadxq.com',
+          changeOrigin: true,
+          rewrite: (path) => path.replace(/^\/ohter-api/, '')
+        }
+      }
+    },
     build: {
       target: 'es2015',
       outDir: './dist/',

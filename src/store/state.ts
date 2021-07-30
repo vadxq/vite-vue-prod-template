@@ -3,5 +3,5 @@ export interface State {
 }
 
 export const state: State = {
-  title: '欢迎来到RRTV小程序'
+  title: '欢迎来到vadxq'
 };

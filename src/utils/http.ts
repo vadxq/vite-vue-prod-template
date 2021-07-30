@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
-import { getApiUrl } from '@/utils/util';
-import router from '@/routes/index';
-import { HTTP_STATUS } from './config';
+import { getToken, getApiUrl } from '@/utils/util';
+// import router from '@/routes/index';
+import { HTTP_STATUS, CLIENT_CONFIG } from './config';
 
 const service: AxiosInstance = axios.create({
   // baseURL: process.env.VUE_APP_ENV === 'development' ? '/api' : computedBaseUrl(),
@@ -26,7 +26,7 @@ service.interceptors.response.use(
   },
   (error) => {
     console.log('---axioa==error:', error);
-    router.push('/500');
+    // router.push('/500');
     return Promise.reject(error);
   }
 );
@@ -35,30 +35,36 @@ service.interceptors.response.use(
  * @description httpRequest，封装网络请求
  */
 class httpRequest {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   baseOptions(params: any, method: Method = 'GET') {
-    const { url, data } = params;
+    const { url, data, token } = params;
     let contentType = 'application/json';
     contentType = params.contentType || contentType;
+    const originToken = token ? token : getToken();
     const option: AxiosRequestConfig = {
       url: getApiUrl(url),
+      // url,
       data: data,
+      params: data,
       method,
       headers: {
         'content-type': contentType,
-        token: 'token'
+        token: originToken,
+        clientVersion: CLIENT_CONFIG.clientVersion,
+        clientType: CLIENT_CONFIG.clientType
       }
     };
 
     return service(option);
   }
 
-  get(url: string, data = {}) {
-    const option = { url, data };
+  get(url: string, data = {}, token?: string) {
+    const option = { url, data, token };
     return this.baseOptions(option);
   }
 
-  post(url: string, data = {}, contentType?: string) {
-    const params = { url, data, contentType };
+  post(url: string, data = {}, contentType?: string, token?: string) {
+    const params = { url, data, contentType, token };
     return this.baseOptions(params, 'POST');
   }
 
