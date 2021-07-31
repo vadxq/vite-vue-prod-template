@@ -11,7 +11,7 @@ const mac: auth.digest.Mac = new qiniu.auth.digest.Mac(
 );
 
 const config: conf.ConfigOptions = new qiniu.conf.Config();
-config.zone = qiniu.zone.Zone_z0;
+config.zone = qiniu.zone[`Zone_${cdnConfig.zone}`];
 
 /**
  * 上传文件

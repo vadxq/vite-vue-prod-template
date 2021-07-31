@@ -23,9 +23,11 @@ export const cdnConfig: {
   bucket: string;
   ak: string;
   sk: string;
+  zone: string; // 空间，华东 z0，华南 z2
 } = {
   host: 'https://cdn.vadxq.com/', // 一定要带/
   bucket: 'cdn-fe',
   ak: '',
-  sk: ''
+  sk: '',
+  zone: 'z0'
 };

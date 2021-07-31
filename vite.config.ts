@@ -3,9 +3,9 @@ import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
 import eslint from '@rollup/plugin-eslint';
-import { projectBasePath } from './build/config';
+import { projectBasePath, cdnConfig } from './build/config';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import * as pkg from './package.json';
+// import * as pkg from './package.json';
 import { viteMockServe } from 'vite-plugin-mock';
 import { viteVConsole } from 'vite-plugin-vconsole';
 
@@ -24,7 +24,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     base:
       mode === 'prod'
-        ? `https://cdn.vadxq.com/${projectBasePath}`
+        ? `${cdnConfig.host}${projectBasePath}`
         : mode === 'test'
         ? '/'
         : mode === 'test1'
@@ -64,7 +64,27 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         enforce: 'pre'
       },
       legacy({
-        targets: ['defaults', 'not IE 11']
+        targets: ['defaults', 'not IE 11', '> 0.25%, not dead'],
+        renderLegacyChunks: true,
+        polyfills: [
+          'es.symbol',
+          'es.array.filter',
+          'es.promise',
+          'es.promise.finally',
+          'es/map',
+          'es/set',
+          'es.array.for-each',
+          'es.object.define-properties',
+          'es.object.define-property',
+          'es.object.get-own-property-descriptor',
+          'es.object.get-own-property-descriptors',
+          'es.object.keys',
+          'es.object.to-string',
+          'web.dom-collections.for-each',
+          'esnext.global-this',
+          'esnext.string.match-all'
+        ],
+        modernPolyfills: ['es.promise.finally']
       })
     ],
     server: {
