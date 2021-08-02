@@ -64,7 +64,13 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         enforce: 'pre'
       },
       legacy({
-        targets: ['defaults', 'not IE 11', '> 0.25%, not dead'],
+        // 不考虑ie的兼容性和老的vivo/锤子/荣耀等国产机型，则可以使用下面
+        // targets: ['defaults', 'not IE 11', '> 0.25%, not dead'],
+        // 如果考虑上面说的兼容性问题，使用下面配置
+        targets: ['ie >= 11'],
+        additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+
+        // 下面可以根据情况选用
         renderLegacyChunks: true,
         polyfills: [
           'es.symbol',

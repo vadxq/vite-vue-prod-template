@@ -3,6 +3,8 @@ import Layout from '@/layouts/index.vue';
 import Home from '@/views/home/index.vue';
 import NotFound from '@/views/4xx/404.vue';
 
+// 为了兼容性处理，不建议使用动态加载。如果不考虑兼容性，则可以使用以下方法引入
+// component: () => import('@/views/home/index.vue')
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
