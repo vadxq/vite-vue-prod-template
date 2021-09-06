@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
 import eslint from '@rollup/plugin-eslint';
-import { projectBasePath, cdnConfig } from './build/config';
+import { projectBasePath, cdnConfig, baseConfig } from './build/config';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 // import * as pkg from './package.json';
 import { viteMockServe } from 'vite-plugin-mock';
@@ -26,11 +26,11 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       mode === 'prod'
         ? `${cdnConfig.host}${projectBasePath}`
         : mode === 'test'
-        ? '/'
+        ? baseConfig.publicPath + '/'
         : mode === 'test1'
-        ? '/'
+        ? baseConfig.publicPath + '/'
         : mode === 'grey'
-        ? '/'
+        ? baseConfig.publicPath + '/'
         : './',
     plugins: [
       vue(),

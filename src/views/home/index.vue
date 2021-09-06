@@ -25,9 +25,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.home {
-  font-size: 28px;
-  background-color: aqua;
-  width: 750px;
-}
+@import './index.scss';
 </style>

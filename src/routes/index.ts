@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import { baseConfig } from '../../build/config';
 import Layout from '@/layouts/index.vue';
 import Home from '@/views/home/index.vue';
 import NotFound from '@/views/4xx/404.vue';
@@ -43,7 +44,7 @@ routes.push({
 });
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(baseConfig.publicPath),
   routes
 });
 

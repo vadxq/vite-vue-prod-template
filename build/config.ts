@@ -31,3 +31,25 @@ export const cdnConfig: {
   sk: '',
   zone: 'z0'
 };
+
+// sentry 配置
+export const sentryConfig: {
+  dsn: string;
+  tracesSampleRate: number;
+  release: string;
+  environment: string;
+} = {
+  dsn: '',
+  release: `${process.env.NODE_ENV}-${pkg.version}`,
+  tracesSampleRate: 1.0,
+  environment:
+    process.env.NODE_ENV === 'prod'
+      ? 'production'
+      : process.env.NODE_ENV === 'test'
+      ? 'test'
+      : process.env.NODE_ENV === 'test1'
+      ? 'test1'
+      : process.env.NODE_ENV === 'grey'
+      ? 'grey'
+      : 'local'
+};

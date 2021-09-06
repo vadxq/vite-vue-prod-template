@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div class="index">
     <div class="index-header">
       <div class="info">
@@ -111,4 +111,4 @@ export default defineComponent({
     }
   }
 }
-</style>
+</style> -->
