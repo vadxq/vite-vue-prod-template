@@ -25,7 +25,8 @@
     "url": "git+https://github.com/vadxq/vite-vue-prod-template.git"
   },
   "keywords": [
-    "vue3"
+    "vue3",
+    "vite"
   ],
   "author": "vadxq",
   "license": "MIT",
@@ -45,7 +46,6 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
-    "@rollup/plugin-eslint": "^8.0.1",
     "@types/node": "^15.0.3",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
@@ -76,6 +76,7 @@
     "typescript": "^4.2.0",
     "vconsole": "^3.6.1",
     "vite": "^2.2.3",
+    "vite-plugin-eslint": "^1.3.0",
     "vite-plugin-mock": "^2.5.0",
     "vite-plugin-vconsole": "^1.1.0",
     "vue-tsc": "^0.0.24"
@@ -85,27 +86,6 @@
     "> 1%",
     "not IE <= 10"
   ],
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended",
-      "@vue/typescript/recommended",
-      "@vue/prettier",
-      "@vue/prettier/@typescript-eslint"
-    ],
-    "parserOptions": {
-      "ecmaVersion": 2020
-    },
-    "rules": {
-      "vue/no-unused-components": "off",
-      "no-debugger": "off",
-      "@typescript-eslint/no-explicit-any": "off"
-    }
-  },
   "husky": {
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",

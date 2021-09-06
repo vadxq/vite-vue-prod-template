@@ -2,7 +2,7 @@ import { ConfigEnv, UserConfigExport } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
-import eslint from '@rollup/plugin-eslint';
+import eslintPlugin from 'vite-plugin-eslint';
 import { projectBasePath, cdnConfig, baseConfig } from './build/config';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 // import * as pkg from './package.json';
@@ -57,12 +57,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
           theme: 'light'
         }
       }),
-      {
-        ...eslint({
-          include: 'src/**/*.+(js|jsx|ts|tsx|vue)'
-        }),
-        enforce: 'pre'
-      },
+      eslintPlugin(),
       legacy({
         // 不考虑ie的兼容性和老的vivo/锤子/荣耀等国产机型，则可以使用下面
         // targets: ['defaults', 'not IE 11', '> 0.25%, not dead'],

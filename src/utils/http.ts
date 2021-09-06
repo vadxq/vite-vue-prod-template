@@ -44,8 +44,8 @@ class httpRequest {
     const option: AxiosRequestConfig = {
       url: getApiUrl(url),
       // url,
-      data: data,
-      params: data,
+      data: method == 'GET' ? '' : data,
+      params: method == 'GET' ? data : '',
       method,
       headers: {
         'content-type': contentType,
