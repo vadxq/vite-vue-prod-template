@@ -119,7 +119,22 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     build: {
       target: 'es2015',
       outDir: './dist/',
-      cssCodeSplit: true
+      cssCodeSplit: true,
+      polyfillModulePreload: true,
+      sourcemap: true,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules')) {
+              return id
+                .toString()
+                .split('node_modules/')[1]
+                .split('/')[0]
+                .toString();
+            }
+          }
+        }
+      }
     }
   };
 };

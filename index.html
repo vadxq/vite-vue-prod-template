@@ -9,5 +9,10 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
+    <script nomodule src="/public/es6-proxy-polyfill.js"></script>
+    <script nomodule type="text/javascript">
+      // 处理老手机proxy
+      var proxy = new Proxy({}, {});
+    </script>
   </body>
 </html>
