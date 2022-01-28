@@ -15,10 +15,12 @@ export default defineComponent({
   setup() {
     const data = ref();
     const store = useMainStore();
+
     onMounted(async () => {
       data.value = await fetch();
       console.log(data.value);
     });
+
     return {
       data,
       store
