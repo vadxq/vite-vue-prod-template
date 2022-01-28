@@ -6,10 +6,12 @@ Vue3 工程化项目实践demo
 - 构建工具：Vite 2
 - 前端框架：Vue 3.0.11
 - 路由工具：Vue Router 4.0.6
-- 状态管理：Vuex 4.0.0
+- 状态管理：Pinia 2.0.0
 - CSS：Sass + Postcss
 - HTTP 工具：Axios
 - MOCK: mockjs + vite plugins
 - Git Hook 工具：Husky + Lint-staged
 - 代码规范：EditorConfig + Prettier + ESLint
 - 提交规范：Commitlint
+
+目前状态管理替换为pinia，store文件夹下，但是vuex虽然注释，但是目前没有删除，可以参考使用

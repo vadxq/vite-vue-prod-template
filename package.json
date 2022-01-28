@@ -39,9 +39,9 @@
     "@sentry/vue": "^6.12.0",
     "axios": "^0.21.1",
     "lib-flexible": "^0.3.2",
+    "pinia": "^2.0.10",
     "vue": "^3.0.5",
-    "vue-router": "^4.0.4",
-    "vuex": "^4.0.0"
+    "vue-router": "^4.0.4"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.1",
@@ -78,7 +78,7 @@
     "vite": "^2.2.3",
     "vite-plugin-eslint": "^1.3.0",
     "vite-plugin-mock": "^2.5.0",
-    "vite-plugin-vconsole": "^1.1.0",
+    "vite-plugin-vconsole": "^1.1.1",
     "vue-tsc": "^0.0.24"
   },
   "browserslist": [
