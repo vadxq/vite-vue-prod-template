@@ -47,11 +47,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         // `
       }),
       viteVConsole({
-        entry: resolve(__dirname, './src/main.ts'),
-        localEnabled: true,
-        enabled:
-          command !== 'serve' &&
-          (mode === 'test' || mode === 'test1' || mode === 'alpha'),
+        entry: [resolve(__dirname, './src/main.ts')], // entry file
+        enabled: command !== 'serve' || mode === 'test', // build production
         config: {
           maxLogNumber: 1000,
           theme: 'light'
