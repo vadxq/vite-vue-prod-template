@@ -13,7 +13,7 @@ export const useMainStore = defineStore({
   state: () =>
     ({
       items: []
-    } as RootState),
+    }) as RootState,
   actions: {
     createNewItem(item: Item) {
       if (!item) return;

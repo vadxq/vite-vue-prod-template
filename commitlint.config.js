@@ -1,23 +1,32 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const typeEnum = require('./.cz-config');
-
 module.exports = {
+  ignores: [(commit) => commit.includes('init')],
   extends: ['@commitlint/config-conventional'],
   rules: {
-    'body-leading-blank': [1, 'always'],
+    'body-leading-blank': [2, 'always'],
     'footer-leading-blank': [1, 'always'],
-    'header-max-length': [2, 'always', 72],
-    'scope-case': [2, 'always', 'lower-case'],
-    'subject-case': [
-      2,
-      'never',
-      ['sentence-case', 'start-case', 'pascal-case', 'upper-case']
-    ],
+    'header-max-length': [2, 'always', 108],
     'subject-empty': [2, 'never'],
-    'subject-full-stop': [2, 'never', '.'],
-    'type-case': [2, 'always', 'lower-case'],
     'type-empty': [2, 'never'],
-    'type-enum': [2, 'always', typeEnum.types.map((i) => i.value)]
-    // 'scope-enum': [2, 'always', typeEnum.scopes.map((i) => i.value)]
+    'type-enum': [
+      2,
+      'always',
+      [
+        'feat',
+        'fix',
+        'perf',
+        'style',
+        'docs',
+        'test',
+        'refactor',
+        'build',
+        'ci',
+        'chore',
+        'revert',
+        'wip',
+        'workflow',
+        'types',
+        'release'
+      ]
+    ]
   }
 };

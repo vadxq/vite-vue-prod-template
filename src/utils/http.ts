@@ -1,7 +1,7 @@
 import axios, { AxiosInstance, AxiosRequestConfig, Method } from 'axios';
-import { getToken, getApiUrl } from '@/utils/util';
+import { getApiUrl, getToken } from '@/utils/util';
 // import router from '@/routes/index';
-import { HTTP_STATUS, CLIENT_CONFIG } from './config';
+import { CLIENT_CONFIG, HTTP_STATUS } from './config';
 
 const service: AxiosInstance = axios.create({
   // baseURL: process.env.VUE_APP_ENV === 'development' ? '/api' : computedBaseUrl(),

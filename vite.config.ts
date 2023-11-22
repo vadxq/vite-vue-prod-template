@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
 import eslintPlugin from 'vite-plugin-eslint';
-import { projectBasePath, cdnConfig, baseConfig } from './build/config';
+import { baseConfig, cdnConfig, projectBasePath } from './build/config';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 // import * as pkg from './package.json';
 import { viteMockServe } from 'vite-plugin-mock';
@@ -26,12 +26,12 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       mode === 'prod'
         ? `${cdnConfig.host}${projectBasePath}`
         : mode === 'test'
-        ? baseConfig.publicPath + '/'
-        : mode === 'test1'
-        ? baseConfig.publicPath + '/'
-        : mode === 'grey'
-        ? baseConfig.publicPath + '/'
-        : './',
+          ? baseConfig.publicPath + '/'
+          : mode === 'test1'
+            ? baseConfig.publicPath + '/'
+            : mode === 'grey'
+              ? baseConfig.publicPath + '/'
+              : './',
     plugins: [
       vue(),
       vueJsx(),
@@ -90,7 +90,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     ],
     server: {
       host: '0.0.0.0',
-      port: 3000,
+      port: 8000,
       open: true,
       proxy: {
         '/api': {
@@ -98,14 +98,14 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
             mode === 'alpha'
               ? 'http://alpha-api.vadxq.com'
               : mode === 'test'
-              ? 'http://test-api.vadxq.com'
-              : mode === 'test1'
-              ? 'http://test1-api.vadxq.com'
-              : mode === 'grey'
-              ? 'https://api.vadxq.com'
-              : mode === 'prod'
-              ? 'https://api.vadxq.com'
-              : 'http://0.0.0.0:3000',
+                ? 'http://test-api.vadxq.com'
+                : mode === 'test1'
+                  ? 'http://test1-api.vadxq.com'
+                  : mode === 'grey'
+                    ? 'https://api.vadxq.com'
+                    : mode === 'prod'
+                      ? 'https://api.vadxq.com'
+                      : 'http://0.0.0.0:3000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         },

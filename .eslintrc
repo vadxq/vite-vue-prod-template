@@ -1,21 +1,60 @@
 {
   "root": true,
   "env": {
-    "node": true
+    "node": true,
+    "browser": true,
+    "es2023": true
   },
   "extends": [
-    "plugin:vue/vue3-essential",
+    // "plugin:vue/vue3-essential",
+    "plugin:vue/strongly-recommended",
     "eslint:recommended",
     "@vue/typescript/recommended",
     "@vue/prettier",
-    "@vue/prettier/@typescript-eslint"
+    "plugin:tailwindcss/recommended",
+    "plugin:prettier/recommended",
+    "prettier"
   ],
+  "parser": "vue-eslint-parser",
   "parserOptions": {
-    "ecmaVersion": 2020
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 2023,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true
+    }
+  },
+  "plugins": ["@typescript-eslint", "tailwindcss", "prettier"],
+  "settings": {
+    "import/ignore": ["node_modules"]
   },
   "rules": {
     "vue/no-unused-components": "off",
     "no-debugger": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "bracketSpacing": true,
+        "tabWidth": 2,
+        "useTabs": false,
+        "htmlWhitespaceSensitivity": "strict",
+        "trailingComma": "none",
+        "endOfLine": "lf"
+      }
+    ],
+    "no-console": "warn",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "tailwindcss/no-custom-classname": "off"
   }
 }

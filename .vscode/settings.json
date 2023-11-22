@@ -1,3 +1,23 @@
 {
-  "volar.tsPlugin": true
+  "editor.formatOnType": true,
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "files.associations": {
+    "editor.snippetSuggestions": "top"
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.guides.bracketPairs": "active",
+  "files.autoSave": "afterDelay",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "stylelint.validate": ["css", "less", "vue", "scss", "html", "postcss"]
 }

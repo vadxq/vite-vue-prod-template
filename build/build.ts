@@ -1,9 +1,9 @@
 import qiniu from 'qiniu';
-import type { conf, auth, form_up, rs } from 'qiniu';
+import type { auth, conf, form_up, rs } from 'qiniu';
 import * as fs from 'fs';
 import * as path from 'path';
 import { exit } from 'process';
-import { projectBasePath, baseConfig, cdnConfig } from './config';
+import { baseConfig, cdnConfig, projectBasePath } from './config';
 
 const mac: auth.digest.Mac = new qiniu.auth.digest.Mac(
   cdnConfig.ak,
