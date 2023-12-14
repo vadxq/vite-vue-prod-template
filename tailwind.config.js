@@ -5,9 +5,10 @@ const { withTV } = require('tailwind-variants/transformer');
 module.exports = withTV({
   darkMode: 'class',
   content: [
-    './app/**/*.{js,ts,jsx,tsx}', // Note the addition of the `app` directory.
-    './components/**/*.{js,ts,jsx,tsx}',
-    './views/**/*.{js,ts,jsx,tsx}'
+    './layouts/**/*.{js,ts,jsx,tsx,vue}',
+    './components/**/*.{js,ts,jsx,tsx,vue}',
+    './views/**/*.{js,ts,jsx,tsx,vue}',
+    './App.vue'
   ],
   future: {
     hoverOnlyWhenSupported: true

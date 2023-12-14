@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import { baseConfig } from '../../build/config';
-import Layout from '@/layouts/index.vue';
+import Layout from '@/layouts/layoutPage.vue';
 import Home from '@/views/home/homePage.vue';
-import NotFound from '@/views/4xx/404.vue';
+import NotFound from '@/views/4xx/404Page.vue';
 
 // 为了兼容性处理，不建议使用动态加载。如果不考虑兼容性，则可以使用以下方法引入
 // component: () => import('@/views/home/index.vue')
