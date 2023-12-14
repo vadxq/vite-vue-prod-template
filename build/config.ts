@@ -21,14 +21,10 @@ export const baseConfig: {
 export const cdnConfig: {
   host: string;
   bucket: string;
-  ak: string;
-  sk: string;
   zone: string; // 空间，华东 z0，华南 z2
 } = {
   host: 'https://cdn.vadxq.com/', // 一定要带/
   bucket: 'cdn-fe',
-  ak: '',
-  sk: '',
   zone: 'z0'
 };
 
@@ -47,9 +43,7 @@ export const sentryConfig: {
       ? 'production'
       : process.env.NODE_ENV === 'test'
         ? 'test'
-        : process.env.NODE_ENV === 'test1'
-          ? 'test1'
-          : process.env.NODE_ENV === 'grey'
-            ? 'grey'
-            : 'local'
+        : process.env.NODE_ENV === 'grey'
+          ? 'grey'
+          : 'local'
 };

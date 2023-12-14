@@ -2,9 +2,17 @@
   <router-view />
 </template>
 
-<script setup lang="ts" name="appPage"></script>
+<script setup lang="ts" name="appPage">
+import { onMounted, ref } from 'vue';
 
-<style lang="scss">
+const data = ref();
+
+onMounted(async () => {
+  console.log(data.value);
+});
+</script>
+
+<style lang="scss" scoped>
 #app {
   background: #fff;
   height: 100%;

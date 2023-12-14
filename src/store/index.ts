@@ -10,10 +10,9 @@ export type RootState = {
 
 export const useMainStore = defineStore({
   id: 'mainStore',
-  state: () =>
-    ({
-      items: []
-    }) as RootState,
+  state: () => ({
+    items: [] as Item[]
+  }),
   actions: {
     createNewItem(item: Item) {
       if (!item) return;

@@ -1,5 +1,53 @@
 # 更新记录
 
+## 2023-12-14
+
+- 安全更新！默认关闭source Map，上传配置分开配置！
+- 更新依赖
+
+```bash
+dependencies:
+- @sentry/tracing 7.81.1
++ @sentry/tracing 7.87.0
+- @sentry/vue 7.81.1
++ @sentry/vue 7.87.0
+- vue 3.3.8
++ vue 3.3.11
+
+devDependencies:
+- @types/node 20.9.3
++ @types/node 20.10.4
+- @typescript-eslint/eslint-plugin 6.12.0
++ @typescript-eslint/eslint-plugin 6.14.0
+- @typescript-eslint/parser 6.12.0
++ @typescript-eslint/parser 6.14.0
+- @vitejs/plugin-vue 4.5.0
++ @vitejs/plugin-vue 4.5.2
+- @vue/compiler-sfc 3.3.8
++ @vue/compiler-sfc 3.3.11
+- eslint 8.54.0
++ eslint 8.55.0
+- eslint-plugin-vue 9.18.1
++ eslint-plugin-vue 9.19.2
+- postcss 8.4.31
++ postcss 8.4.32
+- prettier 3.1.0
++ prettier 3.1.1
+- pretty-quick 3.1.3
+- qiniu 7.10.0
++ qiniu 7.10.1
+- stylelint-order 6.0.3
++ stylelint-order 6.0.4
+- tailwindcss 3.3.5
++ tailwindcss 3.3.6
+- ts-node 10.9.1
++ ts-node 10.9.2
+- typescript 5.3.2
++ typescript 5.3.3
+- vite 5.0.1
++ vite 5.0.8
+```
+
 ## 2023-11-22
 
 - 更新至vite5

@@ -4,11 +4,9 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { exit } from 'process';
 import { baseConfig, cdnConfig, projectBasePath } from './config';
+import cdn from './cdn';
 
-const mac: auth.digest.Mac = new qiniu.auth.digest.Mac(
-  cdnConfig.ak,
-  cdnConfig.sk
-);
+const mac: auth.digest.Mac = new qiniu.auth.digest.Mac(cdn.ak, cdn.sk);
 
 const config: conf.ConfigOptions = new qiniu.conf.Config();
 config.zone = qiniu.zone[`Zone_${cdnConfig.zone}`];

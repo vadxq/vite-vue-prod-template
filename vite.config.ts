@@ -1,4 +1,4 @@
-import { ConfigEnv, UserConfigExport } from 'vite';
+import { ConfigEnv, splitVendorChunkPlugin, UserConfigExport } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
@@ -27,11 +27,9 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         ? `${cdnConfig.host}${projectBasePath}`
         : mode === 'test'
           ? baseConfig.publicPath + '/'
-          : mode === 'test1'
+          : mode === 'grey'
             ? baseConfig.publicPath + '/'
-            : mode === 'grey'
-              ? baseConfig.publicPath + '/'
-              : './',
+            : './',
     plugins: [
       vue(),
       vueJsx(),
@@ -83,7 +81,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
           'esnext.string.match-all'
         ],
         modernPolyfills: ['es.promise.finally']
-      })
+      }),
+      splitVendorChunkPlugin()
     ],
     server: {
       host: '0.0.0.0',
@@ -96,13 +95,11 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
               ? 'http://alpha-api.vadxq.com'
               : mode === 'test'
                 ? 'http://test-api.vadxq.com'
-                : mode === 'test1'
-                  ? 'http://test1-api.vadxq.com'
-                  : mode === 'grey'
+                : mode === 'grey'
+                  ? 'https://api.vadxq.com'
+                  : mode === 'prod'
                     ? 'https://api.vadxq.com'
-                    : mode === 'prod'
-                      ? 'https://api.vadxq.com'
-                      : 'http://0.0.0.0:3000',
+                    : 'http://0.0.0.0:3000',
           changeOrigin: true,
           rewrite: (path) => path.replace(/^\/api/, '')
         },
@@ -117,8 +114,10 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       target: 'es2015',
       outDir: './dist/',
       cssCodeSplit: true,
-      polyfillModulePreload: true,
-      sourcemap: true,
+      modulePreload: {
+        polyfill: true
+      },
+      sourcemap: command !== 'serve' ? false : true,
       rollupOptions: {
         output: {
           manualChunks(id) {
