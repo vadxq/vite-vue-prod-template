@@ -1,5 +1,5 @@
 <template>
-  <div class="homePage">
+  <div class="home-page">
     <p>hello world</p>
     <p>store: {{ store.items }}</p>
   </div>
@@ -20,5 +20,9 @@ onMounted(async () => {
 </script>
 
 <style lang="scss" scoped>
-@import './index';
+.home-page {
+  font-size: 28px;
+  background-color: aqua;
+  width: 750px;
+}
 </style>

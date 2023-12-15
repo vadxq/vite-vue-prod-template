@@ -1,9 +1,9 @@
+import { baseConfig, cdnUrl, projectBasePath } from './src/config/build';
 import { ConfigEnv, splitVendorChunkPlugin, UserConfigExport } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import legacy from '@vitejs/plugin-legacy';
 import { resolve } from 'path';
 import eslintPlugin from 'vite-plugin-eslint';
-import { baseConfig, cdnConfig, projectBasePath } from './build/config';
+import legacy from '@vitejs/plugin-legacy';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 // import * as pkg from './package.json';
 import { viteMockServe } from 'vite-plugin-mock';
@@ -17,6 +17,9 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     css: {
       preprocessorOptions: {
+        css: {
+          additionalData: `@import "@/styles/tailwind.css";`
+        },
         scss: {
           additionalData: `@import "@/styles/reset.scss";@import "@/styles/variables.scss";`
         }
@@ -24,7 +27,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     base:
       mode === 'prod'
-        ? `${cdnConfig.host}${projectBasePath}`
+        ? `${cdnUrl}${projectBasePath}`
         : mode === 'test'
           ? baseConfig.publicPath + '/'
           : mode === 'grey'
@@ -44,6 +47,9 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         //   setupProdMockServer();
         // `
       }),
+      legacy({
+        targets: ['defaults', 'not IE 11']
+      }),
       viteVConsole({
         entry: [resolve(__dirname, './src/main.ts')], // entry file
         enabled: command !== 'serve' || mode === 'test', // build production
@@ -53,35 +59,6 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
         }
       }),
       eslintPlugin(),
-      legacy({
-        // 不考虑ie的兼容性和老的vivo/锤子/荣耀等国产机型，则可以使用下面
-        // targets: ['defaults', 'not IE 11', '> 0.25%, not dead'],
-        // 如果考虑上面说的兼容性问题，使用下面配置
-        targets: ['ie >= 11'],
-        additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
-
-        // 下面可以根据情况选用
-        renderLegacyChunks: true,
-        polyfills: [
-          'es.symbol',
-          'es.array.filter',
-          'es.promise',
-          'es.promise.finally',
-          'es/map',
-          'es/set',
-          'es.array.for-each',
-          'es.object.define-properties',
-          'es.object.define-property',
-          'es.object.get-own-property-descriptor',
-          'es.object.get-own-property-descriptors',
-          'es.object.keys',
-          'es.object.to-string',
-          'web.dom-collections.for-each',
-          'esnext.global-this',
-          'esnext.string.match-all'
-        ],
-        modernPolyfills: ['es.promise.finally']
-      }),
       splitVendorChunkPlugin()
     ],
     server: {
@@ -117,11 +94,27 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       modulePreload: {
         polyfill: true
       },
+      minify: 'terser',
+      cssMinify: true,
       sourcemap: command !== 'serve' ? false : true,
       rollupOptions: {
         output: {
           manualChunks(id) {
             if (id.includes('node_modules')) {
+              if (
+                id
+                  .toString()
+                  .split('node_modules/')[1]
+                  .split('/')[0]
+                  .toString()
+                  .includes('pnpm')
+              ) {
+                return id
+                  .toString()
+                  .split('node_modules/')[1]
+                  .split('/')[1]
+                  .toString();
+              }
               return id
                 .toString()
                 .split('node_modules/')[1]

@@ -3,13 +3,13 @@ import type { auth, conf, form_up, rs } from 'qiniu';
 import * as fs from 'fs';
 import * as path from 'path';
 import { exit } from 'process';
-import { baseConfig, cdnConfig, projectBasePath } from './config';
+import { baseConfig, projectBasePath } from '../src/config/build';
 import cdn from './cdn';
 
 const mac: auth.digest.Mac = new qiniu.auth.digest.Mac(cdn.ak, cdn.sk);
 
 const config: conf.ConfigOptions = new qiniu.conf.Config();
-config.zone = qiniu.zone[`Zone_${cdnConfig.zone}`];
+config.zone = qiniu.zone[`Zone_${cdn.zone}`];
 
 /**
  * 上传文件
@@ -18,7 +18,7 @@ config.zone = qiniu.zone[`Zone_${cdnConfig.zone}`];
  */
 const doUpload = async (key: string | null, file: string) => {
   const options: rs.PutPolicyOptions = {
-    scope: `${cdnConfig.bucket}:${key}`
+    scope: `${cdn.bucket}:${key}`
   };
   const formUploader: form_up.FormUploader = new qiniu.form_up.FormUploader(
     config

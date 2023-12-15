@@ -1,6 +1,6 @@
 import * as Sentry from '@sentry/vue';
 import { Integrations } from '@sentry/tracing';
-import { sentryConfig } from '../../build/config';
+import { sentryConfig } from '@/config/build';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 const sentry = (app: any, router: any) => {

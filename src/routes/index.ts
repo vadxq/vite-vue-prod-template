@@ -1,28 +1,18 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
-import { baseConfig } from '../../build/config';
-import Layout from '@/layouts/layoutPage.vue';
-import Home from '@/views/home/homePage.vue';
-import NotFound from '@/views/4xx/404Page.vue';
+import { baseConfig } from '@/config/build';
 
-// 为了兼容性处理，不建议使用动态加载。如果不考虑兼容性，则可以使用以下方法引入
-// component: () => import('@/views/home/index.vue')
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'layout',
-    component: Layout,
+    component: () => import('@/layouts/layoutPage.vue'),
     children: [
       {
         path: '/',
         name: '首页',
-        component: Home
+        component: () => import('@/views/home/homePage.vue')
       }
     ]
-  },
-  {
-    path: '/404',
-    name: 'notFound',
-    component: NotFound
   }
 ];
 
@@ -49,7 +39,7 @@ const router = createRouter({
 });
 
 // 路由拦截
-router.beforeEach((to, from, next) => {
+router.beforeEach((to, _from, next) => {
   console.log('进入路由拦截');
   if (to.path === '/login') {
     next();

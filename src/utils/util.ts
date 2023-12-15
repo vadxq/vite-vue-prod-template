@@ -89,7 +89,7 @@ export const throttle = function (fn: any, deplay: number) {
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const debounce = function (excute: any, delay: number) {
-  let timer;
+  let timer: string | number | NodeJS.Timeout | undefined;
   return function (this: any, ...args: any) {
     if (timer) {
       clearTimeout(timer);

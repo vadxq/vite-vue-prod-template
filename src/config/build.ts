@@ -1,4 +1,4 @@
-import * as pkg from '../package.json';
+import * as pkg from '../../package.json';
 
 export const projectBasePath: string = pkg.name + '/' + pkg.version + '/';
 
@@ -18,15 +18,7 @@ export const baseConfig: {
   output: '../dist'
 };
 
-export const cdnConfig: {
-  host: string;
-  bucket: string;
-  zone: string; // 空间，华东 z0，华南 z2
-} = {
-  host: 'https://cdn.vadxq.com/', // 一定要带/
-  bucket: 'cdn-fe',
-  zone: 'z0'
-};
+export const cdnUrl = 'https://cdn.vadxq.com/'; // 一定要带/
 
 // sentry 配置
 export const sentryConfig: {

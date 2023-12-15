@@ -1,16 +1,20 @@
 # 更新记录
 
-## 2023-12-14
+## 2023-12-15
 
-- 安全更新！默认关闭source Map，上传配置分开配置！
+- 安全更新！默认关闭source Map，上传配置分开配置！打包关键配置和客户端配置分离，不被引用到
+- 更新tsconfig配置，适配vite5
+- 去除兼容性配置，只保留@vitejs/plugin-legacy默认配置。考虑到现在移动端Android6应该几乎没有了，不需要去兼容这些老旧设备了
+- 修改vite打包配置项，优化打包
+- 添加tailwind css
 - 更新依赖
 
 ```bash
 dependencies:
 - @sentry/tracing 7.81.1
-+ @sentry/tracing 7.87.0
++ @sentry/tracing 7.88.0
 - @sentry/vue 7.81.1
-+ @sentry/vue 7.87.0
++ @sentry/vue 7.88.0
 - vue 3.3.8
 + vue 3.3.11
 
@@ -25,10 +29,14 @@ devDependencies:
 + @vitejs/plugin-vue 4.5.2
 - @vue/compiler-sfc 3.3.8
 + @vue/compiler-sfc 3.3.11
+- cssnano 6.0.1
++ cssnano 6.0.2
 - eslint 8.54.0
 + eslint 8.55.0
 - eslint-plugin-vue 9.18.1
 + eslint-plugin-vue 9.19.2
+- eslint-plugin-import 2.29.0
++ eslint-plugin-import 2.29.1
 - postcss 8.4.31
 + postcss 8.4.32
 - prettier 3.1.0
@@ -45,7 +53,7 @@ devDependencies:
 - typescript 5.3.2
 + typescript 5.3.3
 - vite 5.0.1
-+ vite 5.0.8
++ vite 5.0.9
 ```
 
 ## 2023-11-22

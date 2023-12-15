@@ -1,7 +1,3 @@
-<template>
-  <router-view />
-</template>
-
 <script setup lang="ts" name="appPage">
 import { onMounted, ref } from 'vue';
 
@@ -12,12 +8,6 @@ onMounted(async () => {
 });
 </script>
 
-<style lang="scss" scoped>
-#app {
-  background: #fff;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-</style>
+<template>
+  <router-view />
+</template>
