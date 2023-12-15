@@ -35,9 +35,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       vueJsx(),
       viteMockServe({
         mockPath: 'mocks',
-        supportTs: true,
-        localEnabled: command === 'serve' && mode === 'mock',
-        prodEnabled: false
+        enable: command === 'serve' && mode === 'mock'
         //  这样可以控制关闭mock的时候不让mock打包到最终代码内
         // injectCode: `
         //   import { setupProdMockServer } from './mockProdServer';
@@ -49,7 +47,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       }),
       viteVConsole({
         entry: [resolve(__dirname, './src/main.ts')], // entry file
-        enabled: command !== 'serve' || mode === 'test', // build production
+        enabled:
+          (command === 'build' && mode === 'test') || command === 'serve', // build production
         config: {
           maxLogNumber: 1000,
           theme: 'light'
