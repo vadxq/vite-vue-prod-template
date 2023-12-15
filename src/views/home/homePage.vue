@@ -1,6 +1,6 @@
 <template>
   <div class="home-page">
-    <p>hello world</p>
+    <p class="text-lg">hello world</p>
     <p>store: {{ store.items }}</p>
   </div>
 </template>

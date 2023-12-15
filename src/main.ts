@@ -2,7 +2,6 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from '@/routes/index';
 import { createPinia } from 'pinia';
-
 import sentry from './utils/sentry';
 
 const app = createApp(App);

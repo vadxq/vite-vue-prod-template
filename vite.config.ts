@@ -17,11 +17,8 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     },
     css: {
       preprocessorOptions: {
-        css: {
-          additionalData: `@import "@/styles/tailwind.css";`
-        },
         scss: {
-          additionalData: `@import "@/styles/reset.scss";@import "@/styles/variables.scss";`
+          additionalData: `@import "@/styles/reset.scss";@import "@/styles/variables.scss";@import "@/styles/tailwindcss.scss";`
         }
       }
     },

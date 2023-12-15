@@ -4,12 +4,7 @@ const { withTV } = require('tailwind-variants/transformer');
 /** @type {import('tailwindcss').Config} */
 module.exports = withTV({
   darkMode: 'class',
-  content: [
-    './layouts/**/*.{js,ts,jsx,tsx,vue}',
-    './components/**/*.{js,ts,jsx,tsx,vue}',
-    './views/**/*.{js,ts,jsx,tsx,vue}',
-    './App.vue'
-  ],
+  purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   future: {
     hoverOnlyWhenSupported: true
   },
