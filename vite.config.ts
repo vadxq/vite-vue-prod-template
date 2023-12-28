@@ -15,13 +15,6 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     resolve: {
       alias: [{ find: '@', replacement: resolve(__dirname, './src') }]
     },
-    css: {
-      preprocessorOptions: {
-        scss: {
-          additionalData: `@import "@/styles/reset.scss";@import "@/styles/variables.scss";@import "@/styles/tailwindcss.scss";`
-        }
-      }
-    },
     base:
       mode === 'prod'
         ? `${cdnUrl}${projectBasePath}`

@@ -4,6 +4,8 @@ import router from '@/routes/index';
 import { createPinia } from 'pinia';
 import sentry from './utils/sentry';
 
+import './styles/index.scss';
+
 const app = createApp(App);
 
 if (process.env.NODE_ENV === 'prod') {
